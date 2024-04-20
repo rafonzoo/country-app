@@ -15,6 +15,7 @@ const config: Config = {
       },
       boxShadow: {
         opaque: '0px 0px 4px 4px rgb(0 0 0 / 2%)',
+        focus: '0 0 0 2px #8362F2',
       },
     },
   },

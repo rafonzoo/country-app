@@ -1,0 +1,16 @@
+# bundle
+node_modules
+.pnp
+.pnp.js
+
+# next
+.vercel
+.next
+out
+
+# output
+build
+coverage
+
+# declaration
+**/*.d.ts

@@ -10,7 +10,7 @@ const SegmentTooltip: FC<{
   currencies: Currencies
 }> = ({ callingCode, currency, callingCodes, currencies }) => {
   return (
-    <div className='mt-10 flex w-full space-x-[25px]'>
+    <div className='mt-10 grid grid-rows-2 gap-[25px] md:grid-cols-2 md:grid-rows-1'>
       <div className='flex w-full flex-col'>
         <p className='mb-[5px] text-[18px] font-medium leading-[21.48px]'>
           Calling Code

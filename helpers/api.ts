@@ -34,12 +34,15 @@ export async function getCountryByCode(code: string) {
   return (await response.json()) as Country
 }
 
-export async function getCurrencies(currencyCode: string) {
+export async function getCurrencies(currencyCode: string, countryName: string) {
   const endpoint = getApiUrl(`currency/${currencyCode}`, '2')
   const response = await fetch(endpoint, { method: 'GET' })
 
   if (!response.ok) {
-    return []
+    // In v2 ZWL currency is return error but available in v3.1, instead querying
+    // new api, we just return the current country that show the currency earlier
+    // See: https://restcountries.com/v2/currency/zwl
+    return [{ name: countryName }]
   }
 
   return (await response.json()) as any[] as Currencies

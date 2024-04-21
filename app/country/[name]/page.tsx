@@ -7,15 +7,15 @@ import SegmentTooltip from '@/app/country/[name]/partials/SegmentTooltip'
 
 const CountryPage = async ({ params }: { params: { name: string } }) => {
   try {
-    const countryName = params.name.replace(/-/g, ' ')
+    const countryName = decodeURI(params.name.replace(/-/g, ' '))
     const country = await getCountryByName(countryName)
     const currency = Object.keys(country.currencies)[0]
-    const currencies = await getCurrencies(currency)
+    const currencies = await getCurrencies(currency, country.name.common)
     const callingCodes = await getCallingCode(country.cca2)
     const callingCode = callingCodes[0].callingCodes[0]
 
     return (
-      <main className='mx-auto mt-[90px] max-w-[1105px]'>
+      <main className='mx-auto my-[90px] w-[87.5%] max-w-[1105px]'>
         <BackToHome />
         <div className='mt-[50px]'>
           <SegmentHeader country={country} />

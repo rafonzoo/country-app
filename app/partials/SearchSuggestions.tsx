@@ -6,7 +6,6 @@ import { Countries } from '@/helpers/type'
 import { FC, useState, useEffect, memo } from 'react'
 import { useMutation } from 'react-query'
 import Link from 'next/link'
-import slugify from 'slugify'
 
 const SearchSuggestions: FC<{ query: string }> = ({ query = '' }) => {
   const [countries, setCountries] = useState<Countries>([])
@@ -43,7 +42,7 @@ const SearchSuggestions: FC<{ query: string }> = ({ query = '' }) => {
 
   return (
     <div className='relative w-full'>
-      <div className='shadow-opaque absolute left-0 top-0 w-full rounded-[5px]'>
+      <div className='absolute left-0 top-0 w-full rounded-[5px] shadow-opaque'>
         <ul className='py-[16px] text-left text-[18px] font-medium leading-[21.48px]'>
           {isError ? (
             <li>
@@ -55,7 +54,9 @@ const SearchSuggestions: FC<{ query: string }> = ({ query = '' }) => {
             countries.map(({ name }, index) => (
               <li key={index}>
                 <Link
-                  href={`/country/${slugify(name.common).toLowerCase()}`}
+                  // Pretty url for SEO: /country/United%20States to /country/united-states
+                  // but the API still can be consume it through search `?fullText=true`
+                  href={`/country/${encodeURI(name.common.replace(/\s/g, '-').toLowerCase())}`}
                   className='block w-full px-[25px] py-[9px] text-left hover:bg-zinc-100'
                 >
                   {name.common}

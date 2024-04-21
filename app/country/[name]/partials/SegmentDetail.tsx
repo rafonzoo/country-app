@@ -4,8 +4,8 @@ import DisplayText from '@/components/DisplayText'
 
 const SegmentDetail: FC<{ country: Country }> = ({ country }) => {
   return (
-    <div className='mt-[25px] flex w-full space-x-[25px]'>
-      <div className='shadow-opaque relative flex h-[143px] w-full flex-col justify-between overflow-hidden rounded-[5px] px-[25px] pb-[29px] pt-[25px]'>
+    <div className='mt-[25px] grid grid-rows-2 gap-[25px] md:grid-cols-2 md:grid-rows-1'>
+      <div className='relative flex h-auto w-full flex-col justify-between overflow-hidden rounded-[5px] px-[25px] pb-[29px] pt-[25px] shadow-opaque md:h-[143px]'>
         <p className='text-[18px] font-medium leading-[21.48px]'>LatLong</p>
         <DisplayText>
           {country.latlng.map((lat) => lat.toFixed(1)).join(', ')}
@@ -24,7 +24,7 @@ const SegmentDetail: FC<{ country: Country }> = ({ country }) => {
           />
         </svg>
       </div>
-      <div className='shadow-opaque flex h-[143px] w-full flex-col justify-center space-y-2 px-[25px] text-[18px] leading-[21.48px]'>
+      <div className='flex h-full w-full flex-col justify-center space-y-2 px-[25px] text-[18px] leading-[21.48px] shadow-opaque md:h-[143px]'>
         {[
           { label: 'Capital', value: country.capital },
           { label: 'Region', value: country.region },

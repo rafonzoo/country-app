@@ -5,7 +5,7 @@ const DisplayText: FC<{ as?: React.ElementType; children?: ReactNode }> = ({
   children,
 }) => {
   return (
-    <DynamicTag className='text-primary text-[48px] font-bold leading-[57.28px]'>
+    <DynamicTag className='text-[48px] font-bold leading-[57.28px] text-primary'>
       {children}
     </DynamicTag>
   )

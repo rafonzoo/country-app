@@ -45,7 +45,16 @@ export async function getCurrencies(currencyCode: string, countryName: string) {
     return [{ name: countryName }]
   }
 
-  return (await response.json()) as any[] as Currencies
+  let result: Currencies = await response.json()
+
+  // Add current country to currency list if the result doesn't contains
+  // the current country name, for ex: "Saint Helena, Ascension and...."
+  // but it will reject "United States" in "United States of America"
+  if (!result.some((res) => res.name.includes(countryName))) {
+    result.unshift({ name: countryName })
+  }
+
+  return result // Its okay to mutate directly in this case
 }
 
 export async function getCallingCode(countryCode: string) {
